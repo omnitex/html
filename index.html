@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>NICE</title>
+	<style type="text/css">
+		body {
+			margin: auto;
+		}
+		.ball {
+			position: relative;
+			width: 9.8vw;
+			height: 9.8vw;
+			border-radius: 35%;
+			box-sizing: border-box;
+			animation-iteration-count: infinite;
+			animation-timing-function: ease-in-out;
+		}	
+		#ball0 {
+			background: linear-gradient(35deg, brown, goldenrod);
+			animation-name: floating;
+			animation-duration: 4s;
+			float: left;
+		}
+		#ball1 {
+			background: linear-gradient(35deg, green, orange);
+			animation-name: floating;
+			animation-duration: 4.1s;
+			float: left;
+		}
+		#ball2 {
+			background: linear-gradient(35deg, brown, dodgerblue);
+			animation-name: floating;
+			animation-duration: 4.2s;
+			float: left;
+		}
+		#ball3 {
+			background: linear-gradient(35deg, purple, pink);
+			animation-name: floating;
+			animation-duration: 4.3s;
+			float: left;
+		}
+		#ball4 {
+			background: linear-gradient(35deg, crimson, yellow);
+			animation-name: floating;
+			animation-duration: 4.4s;
+			float: left;
+		}
+		#ball5 {
+			background: linear-gradient(35deg, forestgreen, greenyellow);
+			animation-name: floating;
+			animation-duration: 4.5s;
+			float: left;
+		}
+		#ball6 {
+			background: linear-gradient(35deg, indigo, lightblue);
+			animation-name: floating;
+			animation-duration: 4.6s;
+			float: left;
+		}
+		#ball7 {
+			background: linear-gradient(35deg, maroon, lightsalmon);
+			animation-name: floating;
+			animation-duration: 4.7s;
+			float: left;
+		}
+		#ball8 {
+			background: linear-gradient(35deg, olive, palegreen);
+			animation-name: floating;
+			animation-duration: 4.8s;
+			float: left;
+		}
+		#ball9 {
+			background: linear-gradient(35deg, rebeccapurple, plum);
+			animation-name: floating;
+			animation-duration: 4.9s;
+			float: left;
+		}
+		@keyframes floating {
+			0% {
+				top: 0;
+			}
+			25% {
+				top: 75vh;
+				transform: rotate(90deg);
+			}
+			50% {
+				top: 0;
+				transform: rotate(180deg);
+			}
+			75% {
+				top: 75vh;
+				transform: rotate(270deg);
+			}
+			100% {
+				top: 0;
+				transform: rotate(360deg);
+			}
+		}
+	</style>
+	<script type="text/javascript">
+		var visible = Array(10).fill(true);
+		var visibleCount = 0;
+		function toggleVisible(element, id) {
+			document.getElementById(element).style.background = "none";
+			document.getElementById(element).style.border = "1.5px solid";
+			if(visible[id] == true){
+				visibleCount++;
+			}
+			if(visibleCount == 10){
+			console.log(10);
+			document.getElementById('body').style.background = "url('https://cdn.shopify.com/s/files/1/1791/7101/products/Bi-curious_Pride_Flag_720x.png?v=1571495120')";
+			}
+			visible[id] = false;
+		}
+		
+	</script>
+</head>
+<body id="body">
+	<div id="ball0" class="ball" onclick="toggleVisible('ball0', 0)"></div>
+	<div id="ball1" class="ball" onclick="toggleVisible('ball1', 1)"></div>
+	<div id="ball2" class="ball" onclick="toggleVisible('ball2', 2)"></div>
+	<div id="ball3" class="ball" onclick="toggleVisible('ball3', 3)"></div>
+	<div id="ball4" class="ball" onclick="toggleVisible('ball4', 4)"></div>
+	<div id="ball5" class="ball" onclick="toggleVisible('ball5', 5)"></div>
+	<div id="ball6" class="ball" onclick="toggleVisible('ball6', 6)"></div>
+	<div id="ball7" class="ball" onclick="toggleVisible('ball7', 7)"></div>
+	<div id="ball8" class="ball" onclick="toggleVisible('ball8', 8)"></div>
+	<div id="ball9" class="ball" onclick="toggleVisible('ball9', 9)"></div>
+</body>
+</html>
