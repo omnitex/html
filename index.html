@@ -1,132 +1,161 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>NICE</title>
+	<title>WASD Grid</title>
+	<meta name="viewport" content="width=device-width" initial-scale="1.0">
 	<style type="text/css">
 		body {
-			margin: auto;
-                        background-size: cover;
+			margin: 0;
 		}
-		.ball {
-			position: relative;
-			width: 9.8vw;
-			height: 9.8vw;
-			border-radius: 35%;
-			box-sizing: border-box;
-			animation-iteration-count: infinite;
-			animation-timing-function: ease-in-out;
-		}	
-		#ball0 {
-			background: linear-gradient(35deg, brown, goldenrod);
-			animation-name: floating;
-			animation-duration: 4s;
-			float: left;
-		}
-		#ball1 {
-			background: linear-gradient(35deg, green, orange);
-			animation-name: floating;
-			animation-duration: 4.1s;
-			float: left;
-		}
-		#ball2 {
-			background: linear-gradient(35deg, brown, dodgerblue);
-			animation-name: floating;
-			animation-duration: 4.2s;
-			float: left;
-		}
-		#ball3 {
-			background: linear-gradient(35deg, purple, pink);
-			animation-name: floating;
-			animation-duration: 4.3s;
-			float: left;
-		}
-		#ball4 {
-			background: linear-gradient(35deg, crimson, yellow);
-			animation-name: floating;
-			animation-duration: 4.4s;
-			float: left;
-		}
-		#ball5 {
-			background: linear-gradient(35deg, forestgreen, greenyellow);
-			animation-name: floating;
-			animation-duration: 4.5s;
-			float: left;
-		}
-		#ball6 {
-			background: linear-gradient(35deg, indigo, lightblue);
-			animation-name: floating;
-			animation-duration: 4.6s;
-			float: left;
-		}
-		#ball7 {
-			background: linear-gradient(35deg, maroon, lightsalmon);
-			animation-name: floating;
-			animation-duration: 4.7s;
-			float: left;
-		}
-		#ball8 {
-			background: linear-gradient(35deg, olive, palegreen);
-			animation-name: floating;
-			animation-duration: 4.8s;
-			float: left;
-		}
-		#ball9 {
-			background: linear-gradient(35deg, rebeccapurple, plum);
-			animation-name: floating;
-			animation-duration: 4.9s;
-			float: left;
-		}
-		@keyframes floating {
-			0% {
-				top: 0;
-			}
-			25% {
-				top: 75vh;
-				transform: rotate(90deg);
-			}
-			50% {
-				top: 0;
-				transform: rotate(180deg);
-			}
-			75% {
-				top: 75vh;
-				transform: rotate(270deg);
-			}
-			100% {
-				top: 0;
-				transform: rotate(360deg);
-			}
+		#main {
+			width: 100vw;
+			height: 100vh;
+			display: grid;
 		}
 	</style>
+
 	<script type="text/javascript">
-		var visible = Array(10).fill(true);
-		var visibleCount = 0;
-		function toggleVisible(element, id) {
-			document.getElementById(element).style.background = "none";
-			document.getElementById(element).style.border = "1.5px solid";
-			if(visible[id] == true){
-				visibleCount++;
+		var n;
+		var level = 1;
+		var maxLevel = 10;
+		var boxes = Array();
+		var divBoxes = '';
+		var colors = [['#577590', '#f3ca40', '#f2a541', '#f08a4b', '#d78a76'], ['#462255', '#313b72', '#62a87c', '#7ee081', '#c3f3c0'], ['#011627', '#ff0022', '#41ead4', '#fdfffc', '#b91372'], ['#dff2d8', '#c6dea6', '#7ebdc3', '#7a6263', '#ced097'], ['#d81159', '#8f2d56', '#218380', '#fbb13c', '#73d2de'], ['#8b94a3', '#8cfbde', '#0fff95', '#06ba63', '#103900'], ['#091540', '#7692ff', '#abd2fa', '#3d518c', '#1b2cc1'], ['#191d32', '#282f44', '#453a49', '#6d3b47', '#aa2869'], ['#ff6b35', '#f7c59f', '#efefd0', '#004e89', '#1a659e'], ['#0b0a07', '#bbcea8', '#e3d87e', '#f0ec57', '#748067']];
+		var palette = 1;
+
+		function init(){
+			boxes = [];
+			divBoxes = "";
+
+			switch(level){
+			case 1:
+				n = 2;
+				document.getElementById('main').style.gridTemplateColumns = '50vw 50vw';
+				document.getElementById('main').style.gridTemplateRows = '100vh';
+				break;
+			case 2:
+				n = 4;
+				document.getElementById('main').style.gridTemplateColumns = '50vw 50vw';
+				document.getElementById('main').style.gridTemplateRows = '50vh 50vh';
+				break;
+			case 3:
+				n = 8;
+				document.getElementById('main').style.gridTemplateColumns = '25vw 25vw 25vw 25vw';
+				document.getElementById('main').style.gridTemplateRows = '50vh 50vh';
+				break;
+			case 4:
+				n = 16;
+				document.getElementById('main').style.gridTemplateColumns = '25vw 25vw 25vw 25vw';
+				document.getElementById('main').style.gridTemplateRows = '25vh 25vh 25vh 25vh';
+				break;
+			case 5:
+				n = 32;
+				document.getElementById('main').style.gridTemplateColumns = '12.5vw 12.5vw 12.5vw 12.5vw 12.5vw 12.5vw 12.5vw 12.5vw';
+				document.getElementById('main').style.gridTemplateRows = '25vh 25vh 25vh 25vh';
+				break;
+			case 6:
+				n = 64;
+				document.getElementById('main').style.gridTemplateColumns = '12.5vw 12.5vw 12.5vw 12.5vw 12.5vw 12.5vw 12.5vw 12.5vw';
+				document.getElementById('main').style.gridTemplateRows = '12.5vh 12.5vh 12.5vh 12.5vh 12.5vh 12.5vh 12.5vh 12.5vh';
+				break;
+			case 7:
+				n = 128;
+				document.getElementById('main').style.gridTemplateColumns = '6.25vw 6.25vw 6.25vw 6.25vw 6.25vw 6.25vw 6.25vw 6.25vw 6.25vw 6.25vw 6.25vw 6.25vw 6.25vw 6.25vw 6.25vw 6.25vw';
+				document.getElementById('main').style.gridTemplateRows = '12.5vh 12.5vh 12.5vh 12.5vh 12.5vh 12.5vh 12.5vh 12.5vh';
+				break;
+			case 8:
+				n = 256;
+				document.getElementById('main').style.gridTemplateColumns = '6.25vw 6.25vw 6.25vw 6.25vw 6.25vw 6.25vw 6.25vw 6.25vw 6.25vw 6.25vw 6.25vw 6.25vw 6.25vw 6.25vw 6.25vw 6.25vw';
+				document.getElementById('main').style.gridTemplateRows = '6.25vh 6.25vh 6.25vh 6.25vh 6.25vh 6.25vh 6.25vh 6.25vh 6.25vh 6.25vh 6.25vh 6.25vh 6.25vh 6.25vh 6.25vh 6.25vh';
+				break;
+			case 9:
+				n = 512;
+				document.getElementById('main').style.gridTemplateColumns = '3.125vw 3.125vw 3.125vw 3.125vw 3.125vw 3.125vw 3.125vw 3.125vw 3.125vw 3.125vw 3.125vw 3.125vw 3.125vw 3.125vw 3.125vw 3.125vw 3.125vw 3.125vw 3.125vw 3.125vw 3.125vw 3.125vw 3.125vw 3.125vw 3.125vw 3.125vw 3.125vw 3.125vw 3.125vw 3.125vw 3.125vw 3.125vw';
+				document.getElementById('main').style.gridTemplateRows = '6.25vh 6.25vh 6.25vh 6.25vh 6.25vh 6.25vh 6.25vh 6.25vh 6.25vh 6.25vh 6.25vh 6.25vh 6.25vh 6.25vh 6.25vh 6.25vh';
+				break;
+			case 10:
+				n = 1024;
+				document.getElementById('main').style.gridTemplateColumns = '3.125vw 3.125vw 3.125vw 3.125vw 3.125vw 3.125vw 3.125vw 3.125vw 3.125vw 3.125vw 3.125vw 3.125vw 3.125vw 3.125vw 3.125vw 3.125vw 3.125vw 3.125vw 3.125vw 3.125vw 3.125vw 3.125vw 3.125vw 3.125vw 3.125vw 3.125vw 3.125vw 3.125vw 3.125vw 3.125vw 3.125vw 3.125vw';
+				document.getElementById('main').style.gridTemplateRows = '3.125vh 3.125vh 3.125vh 3.125vh 3.125vh 3.125vh 3.125vh 3.125vh 3.125vh 3.125vh 3.125vh 3.125vh 3.125vh 3.125vh 3.125vh 3.125vh 3.125vh 3.125vh 3.125vh 3.125vh 3.125vh 3.125vh 3.125vh 3.125vh 3.125vh 3.125vh 3.125vh 3.125vh 3.125vh 3.125vh 3.125vh 3.125vh';
+				break;
 			}
-			if(visibleCount == 10){
-			console.log(10);
-			document.getElementById('body').style.background = "url('https://cdn.shopify.com/s/files/1/1791/7101/products/Bi-curious_Pride_Flag_720x.png?v=1571495120')";
+			
+			//fill array boxes with "box0", "box1"... "boxn"
+			for(var i=0; i < n; i++){
+				boxes.push("box" + i);
 			}
-			visible[id] = false;
+
+			//create string to be written into innerHTML in main
+			//contains <div> for each box
+			for(var i=0; i < n; i++){
+				divBoxes = divBoxes.concat('<div id="box' + i +'" onmouseover="change(this)" onwheel="randomize()" ondblclick="blank()"></div>');
+			}
+			//console.log(divBoxes);
+
+			document.getElementById("main").innerHTML = divBoxes;
 		}
+
+		//W increases level, S decreases level
+		//A and D switches color palettes
+		function keyboardInput(e){
+				switch(e.code){
+					case "KeyW":
+						level++;
+						if(level > maxLevel){
+							level = maxLevel;
+							break;
+						}
+						init();
+						break;
+					case "KeyS":
+						level--;
+						if(level < 1){
+							level = 1;
+							break;
+						}
+						init();
+						break;
+					case "KeyD":
+						palette++;
+						if(palette > colors.length){
+							palette = 1;
+							break;
+						}
+						break;
+
+					case "KeyA":
+						palette--;
+						if(palette < 1){
+							palette = colors.length;
+							break
+						}
+						break;
+					
+				}
+
+			}
+
+		//set a random color to every box
+		function randomize() {
+			for (var i=0; i<boxes.length; i++){
+				document.getElementById(boxes[i]).style.background = colors[palette-1][Math.floor(Math.random()*colors[palette-1].length)];
+			}	
+		}
+		//change color of individual box
+		function change(box) {
+			document.getElementById(box.id).style.background = colors[palette-1][Math.floor(Math.random()*colors[palette-1].length)];
+			//console.log(box.id);
+		}
+		function blank(){
+			for (var i=0; i<boxes.length; i++){
+				document.getElementById(boxes[i]).style.background = 'none';
+			}	
+		}	
 		
 	</script>
 </head>
-<body id="body">
-	<div id="ball0" class="ball" onclick="toggleVisible('ball0', 0)"></div>
-	<div id="ball1" class="ball" onclick="toggleVisible('ball1', 1)"></div>
-	<div id="ball2" class="ball" onclick="toggleVisible('ball2', 2)"></div>
-	<div id="ball3" class="ball" onclick="toggleVisible('ball3', 3)"></div>
-	<div id="ball4" class="ball" onclick="toggleVisible('ball4', 4)"></div>
-	<div id="ball5" class="ball" onclick="toggleVisible('ball5', 5)"></div>
-	<div id="ball6" class="ball" onclick="toggleVisible('ball6', 6)"></div>
-	<div id="ball7" class="ball" onclick="toggleVisible('ball7', 7)"></div>
-	<div id="ball8" class="ball" onclick="toggleVisible('ball8', 8)"></div>
-	<div id="ball9" class="ball" onclick="toggleVisible('ball9', 9)"></div>
+
+<body onload="init()" onkeypress="keyboardInput(event)">
+	<div id='main' ></div>
 </body>
 </html>
