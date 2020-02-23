@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Omnitex's playground</title>
+	<meta name="viewport" content="width=device-width" initial-scale="1.0">
+	
+	<style type="text/css">
+		:root {
+			--font-color: #3a3042;
+			--bg-color: #ffe19c;
+			--light-color: #edffd9;
+			--hover-color: #5b85aa;
+		}
+
+		body {
+			display: flex;
+			flex-direction: column;
+			font-family: monospace;
+			color: var(--font-color);
+			background-color: var(--bg-color);
+		}
+		header {
+			text-align: center;
+			font-size: 2em;
+			border-radius: 10px 10px 0 0 ;
+
+		}
+		#grid {
+			display: inherit;
+			justify-content: center;
+			border-radius: 0 0 10px 10px;
+
+		}
+		#grid-inner {
+			display: inline-flex;
+		}
+		#grid-inner-h2 {
+			display: flex;
+			align-items: center;
+			border-radius: 10px 0 0 10px;
+			color: var(--light-color);
+			background-color: var(--font-color);
+		}
+		#grid-inner-h2 h2 {
+			padding: 5px;
+			margin: 0;
+			font-size: 2.5em;
+		}
+		#grid-inner-ul {
+			display: flex;
+			border-radius: 0 10px 10px 0;
+			background-color: var(--light-color);
+		}
+		#grid-inner-ul ul {
+			list-style-type: none;
+			padding: 5px;
+			margin: 0;
+		}
+		#grid-inner-ul ul li {
+			padding: 0 0 0 5px;
+		}
+		hr {
+			border: 1px solid var(--font-color);
+			border-radius: 1px;
+		}
+		a:link {
+			text-decoration: none;
+		}
+		
+	</style>
+	<script type="text/javascript">
+		var colors = ['#f46036', '#5b85aa', '#70a9a1', '#b8b42d', '#98b06f'];
+		var pick = 0, prevPick = 0;
+
+		function mouseEnter() {
+			pick = Math.floor(Math.random()*colors.length);
+			while(pick == prevPick){
+				pick = Math.floor(Math.random()*colors.length);
+			}
+			document.getElementById('grid-inner-h2').style.backgroundColor = colors[pick];
+			document.getElementById('grid-inner-h2').style.color = 'var(--font-color)';
+			prevPick = pick;
+		}
+		function mouseLeave() {
+			document.getElementById('grid-inner-h2').style.backgroundColor = 'var(--font-color)';
+			document.getElementById('grid-inner-h2').style.color = 'var(--light-color)';
+		}
+
+	</script>
+</head>
+<body>
+	<header>
+		<h1>Omnitex's playground</h1>
+	</header>
+	<section id="grid">
+		<div id="grid-inner">
+			<a href="grid.html" id="grid-inner-h2" onmouseenter="mouseEnter()" onmouseleave="mouseLeave()"><h2>GRID</h2></a>
+			<div id="grid-inner-ul">
+				<ul>
+					<li>W and S change the resolution</li>
+					<hr>
+					<li>A and D change the color palette</li>
+					<hr>
+					<li>Space toggles draw mode</li>
+					<hr>
+					<li>While in draw mode, scroll wheel fills the screen</li>
+					<hr>
+					<li>While not in draw mode, single click clears one cell</li>
+					<hr>
+					<li>Double left click clears the screen</li>
+				</ul>
+			</div>
+			
+		</div>
+	</section>
+</body>
+</html>
