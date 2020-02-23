@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>DRAW</title>
+	<title>GRIDRAW</title>
 	<meta name="viewport" content="width=device-width" initial-scale="1.0">
 	<style type="text/css">
 		body {
@@ -138,6 +138,7 @@
 			}
 		}
 
+		//after enabling draw user can click on current box to color it
 		function changeClick (box) {
 			if(draw){
 				document.getElementById(box.id).style.background = colors[palette-1][Math.floor(Math.random()*colors[palette-1].length)];
@@ -146,6 +147,8 @@
 			}
 			
 		}
+
+		//clears the screen
 		function blank(){
 			for (var i=0; i<boxes.length; i++){
 				document.getElementById(boxes[i]).style.background = 'none';
