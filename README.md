@@ -1,1 +1,2 @@
-# Hihi some random stuff or whatever.
+# Omnitex's playground
+HTML, CSS and JavaScript projects.
